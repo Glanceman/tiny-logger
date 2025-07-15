@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cassert>
-#include <cstdint>
 #include <iostream>
 #include <string>
 #include "lockFreeQueue.h"
@@ -23,7 +22,7 @@ public:
         WARNING,
         ERROR
     };
-    
+
     explicit TinyLogger(std::string name, std::string path = "./logs/") :
         m_name(std::move(name)), m_logPath(std::move(path))
     {
@@ -76,7 +75,7 @@ public:
     void log(LogLevel level, std::string_view message, Args&&... args)
     {
         std::string level_str = to_string(level);
-        auto now = std::chrono::system_clock::now();
+        auto        now       = std::chrono::system_clock::now();
         // Format the time point into a string
         // Example format: YYYY-MM-DD HH:MM:SS
         std::string formatted_time = std::format("{:%Y-%m-%d %H:%M:%S}", now);
@@ -99,7 +98,7 @@ private:
     void startLoggingThread()
     {
         m_isRunning = true;
-        m_thread    = std::make_unique<std::thread>([this]() {
+        m_thread    = std::make_unique<std::jthread>([this]() {
             while (m_isRunning)
             {
                 auto log = m_logQueue.pop();
@@ -138,6 +137,6 @@ private:
     std::string                  m_name;
     std::string                  m_logPath;
     std::ofstream                m_file;
-    std::atomic<bool>            m_isRunning{false};
-    std::unique_ptr<std::thread> m_thread;
+    volatile bool                m_isRunning{false};
+    std::unique_ptr<std::jthread> m_thread;
 };
