@@ -20,7 +20,7 @@ public:
         DEBUG,
         INFO,
         WARNING,
-        ERROR
+        ERR
     };
 
     explicit TinyLogger(std::string name, std::string path = "./logs/") :
