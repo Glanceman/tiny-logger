@@ -20,7 +20,7 @@ public:
         DEBUG,
         INFO,
         WARNING,
-        ERROR
+        ERR
     };
 
     explicit TinyLogger(std::string name, std::string path = "./logs/") :
@@ -127,7 +127,7 @@ private:
         case LogLevel::DEBUG: return "DEBUG";
         case LogLevel::INFO: return "INFO";
         case LogLevel::WARNING: return "WARNING";
-        case LogLevel::ERROR: return "ERROR";
+        case LogLevel::ERR: return "ERROR";
         default: return "UNKNOWN";
         }
     }

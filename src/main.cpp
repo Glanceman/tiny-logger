@@ -8,7 +8,7 @@
 
 volatile bool running = true;
 
-void signal_handler(int signum)
+void SignalHandler(int signum)
 {
     std::cout << "Caught signal " << signum << ", exiting gracefully." << std::endl;
     running = false;
@@ -137,8 +137,8 @@ int main()
            sizeof(PackedData));
 
 
-    signal(SIGINT, signal_handler);
-    signal(SIGTERM, signal_handler);
+    signal(SIGINT, SignalHandler);
+    signal(SIGTERM, SignalHandler);
 
     // Test Hazard Pointer Guard
     test_multi_thread_hazard_pointer();
