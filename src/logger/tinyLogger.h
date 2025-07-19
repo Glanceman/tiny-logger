@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <ostream>
 #include <string>
 #include "lockFreeQueue.h"
 #include <fstream>
@@ -104,12 +105,15 @@ private:
                 auto log = m_logQueue.pop();
                 if (log)
                 {
-                    if (!m_file.is_open())
+
+                    std::cout << log.value() << std::endl; // Output to consoles
+                    std::cout.flush(); // Ensure immediate output to console
+
+                    if (m_file.is_open())
                     {
-                        m_file.open(m_logPath + m_name + ".log", std::ios::app);
+                        m_file << log.value() << std::endl;
+                        m_file.flush(); // Ensure immediate write
                     }
-                    m_file << log.value() << std::endl;
-                    m_file.flush(); // Ensure immediate write
                 }
                 else
                 {

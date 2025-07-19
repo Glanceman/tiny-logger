@@ -15,8 +15,8 @@
 class HazardPointerManager
 {
 private:
-    static constexpr size_t MAX_HAZARD_POINTERS = 2;
-    static constexpr size_t MAX_RETIRED_NODES   = 10;
+    static constexpr size_t MAX_HAZARD_POINTERS = 100;
+    static constexpr size_t MAX_RETIRED_NODES   = 100;
 
     struct HazardPointer
     {
