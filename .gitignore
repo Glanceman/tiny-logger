@@ -7,3 +7,4 @@
 /dist/
 /out/
 .vs
+/dist_static_lib/

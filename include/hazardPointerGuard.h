@@ -111,8 +111,6 @@ private:
     }
 };
 
-inline thread_local std::vector<HazardPointerManager::RetiredNode> HazardPointerManager::retired_nodes;
-
 // RAII Hazard Pointer Guard
 class HazardPointerGuard
 {

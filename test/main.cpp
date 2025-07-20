@@ -2,9 +2,9 @@
 #include <vector>
 #include <thread>
 #include <chrono>
-#include "logger/tinyLogger.h"
+#include "tinyLogger.h"
 #include <signal.h>
-#include "logger/hazardPointerGuard.h"
+#include "hazardPointerGuard.h"
 
 volatile bool running = true;
 
